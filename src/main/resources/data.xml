@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <!--    <entry key="mypassword">Ghbrjk123$</entry>-->
+    <entry key="platform">Android</entry>
+    <entry key="device">mobqa42</entry>
+    <entry key="version">8.0</entry>
+    <entry key="package">com.sheygam.contactapp</entry>
+    <entry key="activity">.SplashActivity</entry>
+    <entry key="appium">Appium</entry>
+    <entry key="appiumapp">/Users/zok/Documents/_TelRan/QA-42_Testing_Auto_43_29052024/contacts-android.apk</entry>
+
+</properties>
