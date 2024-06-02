@@ -5,7 +5,6 @@ import io.appium.java_client.MobileElement;
 
 public class AuthenticationScreen extends BaseScreen {
 
-
     public AuthenticationScreen(AppiumDriver<MobileElement> driver) {
         super(driver);
     }

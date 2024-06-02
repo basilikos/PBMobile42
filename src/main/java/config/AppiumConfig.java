@@ -28,6 +28,7 @@ public class AppiumConfig implements TestHelper {
 //        capabilities.setCapability("appActivity", ".SplashActivity");
 //        capabilities.setCapability(MobileCapabilityType.APPLICATION_NAME, "Appium");
 //        capabilities.setCapability(MobileCapabilityType.APP, "/Users/zok/Documents/_TelRan/QA-42_Testing_Auto_43_29052024/contacts-android.apk");
+
         capabilities.setCapability(PLATFORMNAME, PropertiesReaderXML.getProperty("platform", XML_FILE_PATH));
         capabilities.setCapability(DEVICENAME, PropertiesReaderXML.getProperty("device", XML_FILE_PATH));
         capabilities.setCapability(PLATFORMVERSION, PropertiesReaderXML.getProperty("version", XML_FILE_PATH));
@@ -37,7 +38,7 @@ public class AppiumConfig implements TestHelper {
         capabilities.setCapability(MobileCapabilityType.APPLICATION_NAME, PropertiesReaderXML.getProperty("appium", XML_FILE_PATH));
         capabilities.setCapability(MobileCapabilityType.APP, PropertiesReaderXML.getProperty("appiumapp", XML_FILE_PATH));
 
-        driver = new AppiumDriver<MobileElement>(new URL("http://localhost:4723/wd/hub"), capabilities);
+        driver = new AppiumDriver<MobileElement>(new URL(APPIUMDRIVERURL), capabilities);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
     }

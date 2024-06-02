@@ -9,6 +9,8 @@ public interface TestHelper {
     public static final String PLATFORMVERSION = "platformVersion";
     public static final String PACKAGE = "appPackage";
     public static final String ACTIVITY = "appActivity";
+    public static final String APPIUMDRIVERURL = "http://localhost:4723/wd/hub";
+
 
 
 }
