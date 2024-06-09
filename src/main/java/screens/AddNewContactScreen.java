@@ -36,8 +36,24 @@ public class AddNewContactScreen extends BaseScreen {
 
         waitForAnElement(createButton);
 
-        inputEmailField.sendKeys(contact.getName());
+        inputNameField.sendKeys(contact.getName());
+        driver.hideKeyboard();
+        inputLastNameField.sendKeys(contact.getLastName());
+        driver.hideKeyboard();
+        inputEmailField.sendKeys(contact.getEmail());
+        driver.hideKeyboard();
+        inputPhoneField.sendKeys(contact.getPhone());
+        driver.hideKeyboard();
+        inputAddressField.sendKeys(contact.getAddress());
+        driver.hideKeyboard();
+        inputDescriptionField.sendKeys(contact.getDescription());
+        driver.hideKeyboard();
 
-        return null;
+        return new AddNewContactScreen(driver);
+    }
+
+    public ContactListScreen submitContact() {
+        createButton.click();
+        return new ContactListScreen(driver);
     }
 }

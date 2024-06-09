@@ -26,7 +26,7 @@ public class AppiumConfig {
         capabilities.setCapability("appActivity", ".SplashActivity");
 
         capabilities.setCapability(MobileCapabilityType.APPLICATION_NAME, "Appium");
-        capabilities.setCapability(MobileCapabilityType.APP, "/Users/zok/Documents/_TelRan/QA-42_Testing_Auto_43_29052024/contacts-android.apk");
+        capabilities.setCapability(MobileCapabilityType.APP, "/Users/zok/Documents/_TelRan/_dist/contacts-android.apk");
 
         driver = new AppiumDriver<MobileElement>(new URL("http://localhost:4723/wd/hub"), capabilities);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

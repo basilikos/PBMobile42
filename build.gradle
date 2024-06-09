@@ -20,6 +20,7 @@ dependencies {
     testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
     implementation group: 'org.apache.tika', name: 'tika-core', version: '2.9.1'
     implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+    implementation group: 'ru.yandex.qatools.ashot', name: 'ashot', version: '1.5.4'
 }
 
 test {
