@@ -2,6 +2,8 @@ package screens;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.offset.PointOption;
 import models.Contact;
 import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +22,8 @@ public class ContactListScreen extends BaseScreen {
     List<MobileElement> rowPhone;
     @FindBy(xpath = "//*[@resource-id='com.sheygam.contactapp:id/rowContainer']")
     List<MobileElement> contacts;
+    @FindBy(xpath = "//*[@resource-id='android:id/button1']")
+    MobileElement yesButton;
 
     public ContactListScreen(AppiumDriver<MobileElement> driver) {
         super(driver);
@@ -50,13 +54,26 @@ public class ContactListScreen extends BaseScreen {
         return false;
     }
 
-    public void removeAContact() {
+    public ContactListScreen removeAContact() {
         waitForAnElement(addContactButton);
         MobileElement contact = contacts.get(0);
 
         Rectangle rectangle = contact.getRect();
-        int startX = rectangle.getX() + rectangle.getWidth() / 4;
+        int startX = rectangle.getX() + rectangle.getWidth() / 8;
         int y = rectangle.getY() + rectangle.getHeight() / 2;
-        int endX = startX + rectangle.getWidth() / 2;
+        int endX = startX + rectangle.getWidth() * 6 / 8;
+
+        new TouchAction<>(driver)
+                .longPress(PointOption.point(startX, y))
+                .moveTo(PointOption.point(endX, y))
+                .release()
+                .perform()
+        ;
+
+        if (isElementPresent(yesButton, "YES", 5)) {
+            yesButton.click();
+        }
+//        return this;
+        return new ContactListScreen(driver);
     }
 }

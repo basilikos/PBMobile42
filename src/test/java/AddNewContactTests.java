@@ -1,11 +1,10 @@
 import config.AppiumConfig;
-import helpers.AddressGenerator;
-import helpers.EmailGenerator;
-import helpers.NameAndLastNameGenerator;
-import helpers.PhoneNumberGenerator;
+import enums.ContactField;
+import helpers.*;
 import models.Contact;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import screens.AddNewContactScreen;
 import screens.ContactListScreen;
 import screens.SplashScreen;
 
@@ -26,12 +25,34 @@ public class AddNewContactTests extends AppiumConfig {
         contact.setAddress(AddressGenerator.generateAddress());
         contact.setDescription("05062024_1");
 
-        Assert.assertTrue(
-                new ContactListScreen(driver).openNewContactForm()
-                        .fillTheForm(contact)
-                        .submitContact()
-                        .isContactAdded(contact)
+        ContactListScreen contactListScreen = new ContactListScreen(driver)
+                .openNewContactForm()
+                .fillTheForm(contact)
+                .submitContact();
+
+        Assert.assertTrue(contactListScreen.isContactAdded(contact));
+    }
+
+    @Test
+    public void addNewContactNegative() {
+
+        new SplashScreen(driver).switchToAuthenticationScreen()
+                .fillEmailField("asd20032024@gmail.com")
+                .fillPasswordField("Ghbrjk123$")
+                .clickLoginButton();
+
+        Contact contact = ContactGenerator.createIncorrectContact(
+                ContactField.PHONE,
+                "123"
         );
+
+        AddNewContactScreen addNewContactScreen = new ContactListScreen(driver)
+                .openNewContactForm()
+                .fillTheForm(contact)
+                .submitContact();
+
+        Assert.assertTrue(addNewContactScreen.isThisTheAddNewContactScreen());
+
     }
 
 }

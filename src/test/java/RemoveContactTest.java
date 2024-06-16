@@ -30,8 +30,6 @@ public class RemoveContactTest extends AppiumConfig {
                 .fillTheForm(contact)
                 .submitContact();
         contactListScreen.removeAContact();
-
-
     }
 
 }
