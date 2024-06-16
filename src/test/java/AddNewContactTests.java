@@ -1,6 +1,7 @@
 import config.AppiumConfig;
 import enums.ContactField;
 import helpers.*;
+import jdk.jfr.Description;
 import models.Contact;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,6 +10,8 @@ import screens.ContactListScreen;
 import screens.SplashScreen;
 
 public class AddNewContactTests extends AppiumConfig {
+
+    String phoneNumberError = "{phone=Phone number must contain only digits! And length min 10, max 15!}";
 
     @Test
     public void addNewContactPositive() {
@@ -55,4 +58,26 @@ public class AddNewContactTests extends AppiumConfig {
 
     }
 
+    @Test
+    @Description("Phone number must contain only digits! And length min 10, max 15!")
+    public void addNewContactNegativePhoneNumber() {
+
+        new SplashScreen(driver).switchToAuthenticationScreen()
+                .fillEmailField("asd20032024@gmail.com")
+                .fillPasswordField("Ghbrjk123$")
+                .clickLoginButton();
+
+        Contact contact = ContactGenerator.createIncorrectContact(
+                ContactField.PHONE,
+                "123"
+        );
+
+        AddNewContactScreen addNewContactScreen = new ContactListScreen(driver)
+                .openNewContactForm()
+                .fillTheForm(contact)
+                .submitContact();
+
+        Assert.assertEquals(,phoneNumberError);
+
+    }
 }

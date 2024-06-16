@@ -34,6 +34,9 @@ public class AddNewContactScreen extends BaseScreen {
     @FindBy(xpath = "//*[@resource-id='com.sheygam.contactapp:id/action_bar']/android.widget.TextView")
     MobileElement titleText;
 
+    @FindBy(xpath = "//*[@resource-id='android:id/message']")
+    MobileElement phoneNumberErrorText;
+
     public AddNewContactScreen(AppiumDriver<MobileElement> driver) {
         super(driver);
     }
