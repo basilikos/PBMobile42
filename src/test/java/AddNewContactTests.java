@@ -55,4 +55,17 @@ public class AddNewContactTests extends AppiumConfig {
 
     }
 
+    @Test
+    public void addNewContacts() {
+
+        new SplashScreen(driver)
+                .switchToAuthenticationScreen()
+                .fillEmailField("asd20032024@gmail.com")
+                .fillPasswordField("Ghbrjk123$")
+                .clickLoginButton();
+
+        new ContactListScreen(driver).addMultipleContacts(10);
+
+    }
+
 }

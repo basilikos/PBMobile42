@@ -4,6 +4,7 @@ import helpers.EmailGenerator;
 import helpers.NameAndLastNameGenerator;
 import helpers.PhoneNumberGenerator;
 import models.Contact;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import screens.ContactListScreen;
 import screens.SplashScreen;
@@ -29,7 +30,27 @@ public class RemoveContactTest extends AppiumConfig {
         contactListScreen.openNewContactForm()
                 .fillTheForm(contact)
                 .submitContact();
-        contactListScreen.removeAContact();
+//        contactListScreen.removeAContact(); // 16062024
+//        Assert.assertTrue(contactListScreen.removeAContact().isContactRemoved()); // 16062024
+//        16062024
+        Assert.assertTrue(contactListScreen
+                .removeAContact()
+                .isContactRemovedList(contact.getName(), contact.getLastName(), contact.getPhone())
+        );
+    }
+
+    //    16062024
+    @Test
+    public void removeAllContactsTest() {
+
+        ContactListScreen contactListScreen = new SplashScreen(driver)
+                .switchToAuthenticationScreen()
+                .fillEmailField("asd20032024@gmail.com")
+                .fillPasswordField("Ghbrjk123$")
+                .clickLoginButton();
+
+        Assert.assertTrue(contactListScreen.removeAllContacts().isContactRemoved());
+
     }
 
 }

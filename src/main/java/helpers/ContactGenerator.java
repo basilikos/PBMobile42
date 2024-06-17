@@ -39,7 +39,7 @@ public class ContactGenerator {
             }
         }
 
-        return new Contact(name, lastName, phoneNumber, email, address, description);
+        return new Contact(name, lastName, email, phoneNumber, address, description);
     }
 
     public static Contact createCorrectContact() {
