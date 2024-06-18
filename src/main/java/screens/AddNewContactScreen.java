@@ -35,7 +35,8 @@ public class AddNewContactScreen extends BaseScreen {
     MobileElement titleText;
 
     @FindBy(xpath = "//*[@resource-id='android:id/message']")
-    MobileElement phoneNumberErrorText;
+    MobileElement phoneNumberErrorTextActual;
+//    MobileElement phoneNumberErrorTextActual = driver.findElement(By.xpath("//*[@resource-id='android:id/message']"));
 
     public AddNewContactScreen(AppiumDriver<MobileElement> driver) {
         super(driver);
@@ -82,4 +83,10 @@ public class AddNewContactScreen extends BaseScreen {
     public boolean isThisTheAddNewContactScreen() {
         return isElementPresent(titleText, "Add new contact", 5);
     }
+
+    public String getPhoneNumberErrorText() {
+        waitForAnElement(phoneNumberErrorTextActual);
+        return phoneNumberErrorTextActual.getText();
+    }
+
 }

@@ -11,7 +11,7 @@ import screens.SplashScreen;
 
 public class AddNewContactTests extends AppiumConfig {
 
-    String phoneNumberError = "{phone=Phone number must contain only digits! And length min 10, max 15!}";
+    String phoneNumberErrorTextExpected = "{phone=Phone number must contain only digits! And length min 10, max 15!}";
 
     @Test
     public void addNewContactPositive() {
@@ -77,7 +77,8 @@ public class AddNewContactTests extends AppiumConfig {
                 .fillTheForm(contact)
                 .submitContact();
 
-        Assert.assertEquals(,phoneNumberError);
+        String phoneNumberErrorTextActual = addNewContactScreen.getPhoneNumberErrorText();
+        Assert.assertEquals(phoneNumberErrorTextActual, phoneNumberErrorTextExpected);
 
     }
 }
