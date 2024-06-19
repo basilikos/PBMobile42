@@ -49,32 +49,31 @@ public class EditContactScreen extends BaseScreen {
         return this;
     }
 
+    public void processField(MobileElement element, String text) {
+        element.clear();
+        element.sendKeys(text);
+    }
+
     public EditContactScreen editContactFields(ContactFields contactFieldName, String text) {
         waitForAnElement(updateButton);
         switch (contactFieldName) {
             case NAMEFIELD:
-                inputNameField.clear();
-                inputNameField.sendKeys(text);
+                processField(inputNameField, text);
                 break;
             case LASTNAMEFIELD:
-                inputLastNameField.clear();
-                inputLastNameField.sendKeys(text);
+                processField(inputLastNameField, text);
                 break;
             case EMAILFIELD:
-                inputEmailField.clear();
-                inputEmailField.sendKeys(text);
+                processField(inputEmailField, text);
                 break;
             case PHONEFIELD:
-                inputPhoneField.clear();
-                inputPhoneField.sendKeys(text);
+                processField(inputPhoneField, text);
                 break;
             case ADDRESSFIELD:
-                inputAddressField.clear();
-                inputAddressField.sendKeys(text);
+                processField(inputAddressField, text);
                 break;
             case DESCRIPTIONFIELD:
-                inputDescriptionField.clear();
-                inputDescriptionField.sendKeys(text);
+                processField(inputDescriptionField, text);
                 break;
             default:
                 System.out.println("Invalid contactFieldName value. Use enum ContactFields.");
