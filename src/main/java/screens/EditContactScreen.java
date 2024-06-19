@@ -48,4 +48,39 @@ public class EditContactScreen extends BaseScreen {
         inputEmailField.sendKeys(text);
         return this;
     }
+
+    public EditContactScreen editContactFields(ContactFields contactFieldName, String text) {
+        waitForAnElement(updateButton);
+        switch (contactFieldName) {
+            case NAMEFIELD:
+                inputNameField.clear();
+                inputNameField.sendKeys(text);
+                break;
+            case LASTNAMEFIELD:
+                inputLastNameField.clear();
+                inputLastNameField.sendKeys(text);
+                break;
+            case EMAILFIELD:
+                inputEmailField.clear();
+                inputEmailField.sendKeys(text);
+                break;
+            case PHONEFIELD:
+                inputPhoneField.clear();
+                inputPhoneField.sendKeys(text);
+                break;
+            case ADDRESSFIELD:
+                inputAddressField.clear();
+                inputAddressField.sendKeys(text);
+                break;
+            case DESCRIPTIONFIELD:
+                inputDescriptionField.clear();
+                inputDescriptionField.sendKeys(text);
+                break;
+            default:
+                System.out.println("Invalid contactFieldName value. Use enum ContactFields.");
+                break;
+        }
+        System.out.println(contactFieldName + " has been edited.");
+        return this;
+    }
 }
