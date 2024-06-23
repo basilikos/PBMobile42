@@ -9,10 +9,12 @@ import org.testng.annotations.Test;
 import screens.ContactListScreen;
 import screens.SplashScreen;
 
+import java.io.IOException;
+
 public class RemoveContactTest extends AppiumConfig {
 
     @Test
-    public void removeContactPositive() {
+    public void removeContactPositive() throws InterruptedException, IOException {
         ContactListScreen contactListScreen = new SplashScreen(driver)
                 .switchToAuthenticationScreen()
                 .fillEmailField("asd20032024@gmail.com")
@@ -27,11 +29,18 @@ public class RemoveContactTest extends AppiumConfig {
         contact.setAddress(AddressGenerator.generateAddress());
         contact.setDescription("05062024_2");
 
+//        19062024
+        toggleInternet(false);
+        Thread.sleep(7000);
+
         contactListScreen.openNewContactForm()
                 .fillTheForm(contact)
-                .submitContact();
+                .submitContact(true);
 //        contactListScreen.removeAContact(); // 16062024
 //        Assert.assertTrue(contactListScreen.removeAContact().isContactRemoved()); // 16062024
+
+        toggleInternet(true); // 19062024
+
 //        16062024
         Assert.assertTrue(contactListScreen
                 .removeAContact()

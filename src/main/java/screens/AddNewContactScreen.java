@@ -34,6 +34,9 @@ public class AddNewContactScreen extends BaseScreen {
     @FindBy(xpath = "//*[@resource-id='com.sheygam.contactapp:id/action_bar']/android.widget.TextView")
     MobileElement titleText;
 
+    @FindBy(id = "android:id/message")
+    MobileElement errorMessageText;
+
     public AddNewContactScreen(AppiumDriver<MobileElement> driver) {
         super(driver);
     }
@@ -63,13 +66,15 @@ public class AddNewContactScreen extends BaseScreen {
 //        return new ContactListScreen(driver);
 //    }
 
-    public <T extends BaseScreen> T submitContact() {
+    //    19062024
+    public <T extends BaseScreen> T submitContact(boolean doINeedToClickOkButton) {
         createButton.click();
-
         List<MobileElement> list = driver.findElements(By.xpath("//*[@resource-id='android:id/alertTitle']"));
 
         if (list.size() > 0) {
-            driver.findElement(By.xpath("//*[@resource-id='android:id/button1']")).click();
+            if (doINeedToClickOkButton) {
+                driver.findElement(By.xpath("//*[@resource-id='android:id/button1']")).click();
+            }
             return (T) new AddNewContactScreen(driver);
         } else {
             return (T) new ContactListScreen(driver);
@@ -78,5 +83,11 @@ public class AddNewContactScreen extends BaseScreen {
 
     public boolean isThisTheAddNewContactScreen() {
         return isElementPresent(titleText, "Add new contact", 5);
+    }
+
+    public boolean isTheErrorScreenPresent(String text) {
+        waitForAnElement(errorMessageText);
+        System.out.println("errorMessageText : " + errorMessageText.getText());
+        return errorMessageText.getText().contains(text);
     }
 }

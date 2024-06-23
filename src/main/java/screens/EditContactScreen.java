@@ -1,5 +1,6 @@
 package screens;
 
+import enums.ContactField;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.support.FindBy;
@@ -47,5 +48,34 @@ public class EditContactScreen extends BaseScreen {
         inputEmailField.clear();
         inputEmailField.sendKeys(text);
         return this;
+    }
+
+    // 19062024
+    public EditContactScreen editField(ContactField field, String text) {
+        MobileElement fieldElement = getFieldElement(field);
+        waitForAnElement(fieldElement);
+        fieldElement.clear();
+        fieldElement.sendKeys(text);
+        return this;
+    }
+
+    // 19062024
+    private MobileElement getFieldElement(ContactField field) {
+        switch (field) {
+            case NAME:
+                return inputNameField;
+            case LASTNAME:
+                return inputLastNameField;
+            case EMAIL:
+                return inputEmailField;
+            case PHONE:
+                return inputPhoneField;
+            case ADDRESS:
+                return inputAddressField;
+            case DESCRIPTION:
+                return inputDescriptionField;
+            default:
+                throw new IllegalArgumentException("Invalid field..." + field);
+        }
     }
 }

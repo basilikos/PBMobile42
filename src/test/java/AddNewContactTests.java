@@ -28,31 +28,49 @@ public class AddNewContactTests extends AppiumConfig {
         ContactListScreen contactListScreen = new ContactListScreen(driver)
                 .openNewContactForm()
                 .fillTheForm(contact)
-                .submitContact();
+                .submitContact(true);
 
         Assert.assertTrue(contactListScreen.isContactAdded(contact));
     }
 
+//    @Test
+//    public void addNewContactNegative() {
+//
+//        new SplashScreen(driver).switchToAuthenticationScreen()
+//                .fillEmailField("asd20032024@gmail.com")
+//                .fillPasswordField("Ghbrjk123$")
+//                .clickLoginButton();
+//
+//        Contact contact = ContactGenerator.createIncorrectContact(
+//                ContactField.PHONE,
+//                "123"
+//        );
+//
+//        AddNewContactScreen addNewContactScreen = new ContactListScreen(driver)
+//                .openNewContactForm()
+//                .fillTheForm(contact)
+//                .submitContact();
+//
+//        Assert.assertTrue(addNewContactScreen.isThisTheAddNewContactScreen());
+//
+//    }
+
+    //    19062024
     @Test
     public void addNewContactNegative() {
-
         new SplashScreen(driver).switchToAuthenticationScreen()
                 .fillEmailField("asd20032024@gmail.com")
                 .fillPasswordField("Ghbrjk123$")
                 .clickLoginButton();
-
         Contact contact = ContactGenerator.createIncorrectContact(
                 ContactField.PHONE,
                 "123"
         );
-
         AddNewContactScreen addNewContactScreen = new ContactListScreen(driver)
                 .openNewContactForm()
                 .fillTheForm(contact)
-                .submitContact();
-
-        Assert.assertTrue(addNewContactScreen.isThisTheAddNewContactScreen());
-
+                .submitContact(false);
+        Assert.assertTrue(addNewContactScreen.isTheErrorScreenPresent("phone"));
     }
 
     @Test
